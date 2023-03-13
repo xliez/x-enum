@@ -1,7 +1,7 @@
 {
-  "name": "vite-vanilla-ts-lib-starter",
+  "name": "@xliez/enum-tool",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.1",
   "main": "./dist/vite-ts-lib-starter.cjs",
   "module": "./dist/vite-ts-lib-starter.mjs",
   "exports": {
@@ -16,10 +16,8 @@
     "test": "jest --runInBand",
     "test:coverage": "jest --runInBand --coverage",
     "lint:scripts": "eslint . --ext .ts",
-    "lint:styles": "stylelint ./**/*.{css,scss}",
     "format:scripts": "prettier . --write",
-    "format:styles": "stylelint ./**/*.{css,scss} --fix",
-    "format": "npm run format:scripts && npm run format:styles",
+    "format": "npm run format:scripts",
     "prepare": "husky install && husky set .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit",
     "uninstall-husky": "npm uninstall husky --no-save && git config --unset core.hooksPath && npx rimraf .husky"
   },
@@ -37,9 +35,6 @@
     "jest": "^29.3.1",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.3",
-    "stylelint": "^14.16.1",
-    "stylelint-config-recommended": "^9.0.0",
-    "stylelint-config-sass-guidelines": "^9.0.1",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4",

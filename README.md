@@ -1,61 +1,64 @@
-# vite-vanilla-ts-lib-starter
+# enum-tool
 
-The starter is built on top of Vite 4.x and prepared for writing libraries in TypeScript. It generates a hybrid package - both support for CommonJS and ESM modules.
+管理枚举值的工具
 
-## Features
+## 动机
 
-- Hybrid support - CommonJS and ESM modules
-- IIFE bundle for direct browser support without bundler
-- Typings bundle
-- ESLint - scripts linter
-- Stylelint - styles linter
-- Prettier - formatter
-- Jest - test framework
-- Husky + lint-staged - pre-commit git hook set up for formatting
+在业务中，我们经常需要维护一些枚举值，如状态、类型，这些枚举值包含 `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。
 
-## GitHub Template
+有以下这些使用场景：
 
-This is a template repo. Click the green [Use this template](https://github.com/kbysiec/vite-vanilla-ts-lib-starter/generate) button to get started.
+1. select 组件的options: 一般为 `{ label: string; value: string | number }[]` 这样的数据
+2. 根据 key 获取 value
+3. 根据 key 获取 label
+4. 根据 value 获取 label
+5. 根据 value 获取 key
 
-## Clone to local
+该函数工具封装了以上业务场景的方法，方便维护枚举值
 
-If you prefer to do it manually with the cleaner git history
+### 使用方式
 
-```bash
-git clone https://github.com/kbysiec/vite-vanilla-ts-lib-starter.git
-cd vite-vanilla-ts-lib-starter
-npm i
+```ts
+import { Select } from 'antd';
+import { EnumTool } from '@xliez/enum-tool';
+
+const TypeEnum = new EnumTool([
+    ['TODO', 0, '待办'],
+    ['PENDING', 1, '处理中'],
+    ['DONE', 2, '已完成']
+] as const)
+
+// 1. 生成 select 组件 options
+const App = () => {
+  return (
+    <>
+      <Select label="select" name="select" options={genOptions()} />
+    </>
+  );
+};
+
+// 2. 根据 key 取 value
+const value = TypeEnum.valueByKey('TODO')
+
+export default App;
 ```
 
-## Checklist
+### 定义
 
-When you use this template, update the following:
-
-- Remove `.git` directory and run `git init` to clean up the history
-- Change the name in `package.json` - it will be the name of the IIFE bundle global variable and bundle files name (`.cjs`, `.mjs`, `.iife.js`, `d.ts`)
-- Change the author name in `LICENSE`
-- Clean up the `README` and `CHANGELOG` files
-
-And, enjoy :)
-
-## Usage
-
-The starter contains the following scripts:
-
-- `dev` - starts dev server
-- `build` - generates the following bundles: CommonJS (`.cjs`) ESM (`.mjs`) and IIFE (`.iife.js`). The name of bundle is automatically taked from `package.json` name property
-- `test` - starts jest and runs all tests
-- `test:coverage` - starts jest and run all tests with code coverage report
-- `lint:scripts` - lint `.ts` files with eslint
-- `lint:styles` - lint `.css` and `.scss` files with stylelint
-- `format:scripts` - format `.ts`, `.html` and `.json` files with prettier
-- `format:styles` - format `.cs` and `.scss` files with stylelint
-- `format` - format all with prettier and stylelint
-- `prepare` - script for setting up husky pre-commit hook
-- `uninstall-husky` - script for removing husky from repository
-
-## Acknowledgment
-
-If you found it useful somehow, I would be grateful if you could leave a star in the project's GitHub repository.
-
-Thank you.
+```ts
+function enumTool(origin: Record<string, EnumValue>): {
+  // 获取原始对象
+  origin: Record<string, EnumValue>;
+  // 根据 key 获取 value
+  keyToVal: (key: string) => EnumValue;
+  // 根据 value 获取 key
+  valToKey: (value: EnumValue) => EnumValue;
+  /* 生成 Select 组件的 options
+   * names 为生成options数组中代表 label 和 value 的名称，默认为 ['label', 'value']
+   * 如 genOptions(['name', 'id']) => 生成 [{ name: 'A', id: 'a' }, { name: 'B', id: 'b' }, { name: 'C', id: 'c' }]
+   */
+  genOptions: (names?: [string, string]) => {
+    [labelName: string]: EnumValue;
+  }[];
+};
+```
