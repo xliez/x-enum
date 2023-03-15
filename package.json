@@ -1,6 +1,7 @@
 {
   "name": "@xliez/x-enum",
   "description": "A simple enum management library build with TypeScript.",
+  "license": "MIT",
   "author": {
     "name": "xliez"
   },
@@ -8,10 +9,13 @@
     "type": "git",
     "url": "https://github.com/xliez/x-enum"
   },
-  "private": true,
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "require": "./dist/index.js",
