@@ -27,9 +27,8 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: getPackageNameCamelCase(),
-      formats,
-      fileName: (format) => fileName[format],
+      formats: ["es", "cjs"],
+      fileName: 'index'
     },
   },
 });

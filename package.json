@@ -1,13 +1,13 @@
 {
-  "name": "@xliez/enum-tool",
+  "name": "@xliez/x-enum",
   "private": true,
   "version": "0.0.1",
-  "main": "./dist/vite-ts-lib-starter.cjs",
-  "module": "./dist/vite-ts-lib-starter.mjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "exports": {
     ".": {
-      "require": "./dist/vite-ts-lib-starter.cjs",
-      "import": "./dist/vite-ts-lib-starter.mjs"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
     }
   },
   "scripts": {
