@@ -1,5 +1,13 @@
 {
   "name": "@xliez/x-enum",
+  "description": "A simple enum management library build with TypeScript.",
+  "author": {
+    "name": "xliez"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xliez/x-enum"
+  },
   "private": true,
   "version": "0.0.1",
   "main": "./dist/index.js",

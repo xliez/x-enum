@@ -1,4 +1,4 @@
-# enum-tool
+# x-enum
 
 管理枚举值的工具
 
