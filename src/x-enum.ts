@@ -1,5 +1,12 @@
+// type of `value`
 type EnumValue = string | number;
-type KVL<T extends string> = [T, EnumValue, string?];
+
+/**
+ * type of key-value-label
+ * @example { key: [0, '例子'] } 包含中文label
+ * @example { key: [0] } 不包含中文label，用于key即是lābel的情况
+ */
+type KVL<T extends string> = Record<T, [EnumValue, string?]>;
 type VLObj = { value: EnumValue; label?: string };
 
 /**
@@ -12,12 +19,10 @@ export class EnumTool<T extends string> {
 
   private optionsCache: null | { [name: string]: EnumValue }[] = null;
 
-  constructor(kvls: KVL<T>[]) {
-    kvls.forEach(([key, value, label]) => {
-      this.kvMap[key] = {
-        value,
-        label,
-      };
+  constructor(kvl: KVL<T>) {
+    Object.keys(kvl).forEach(key => {
+      const [value, label] = kvl[key as T];
+      this.kvMap[key as T] = { value, label: label ?? key };
     });
   }
 
@@ -63,9 +68,21 @@ export class EnumTool<T extends string> {
   public getMap() {
     return this.kvMap;
   }
+
+  public get keys() {
+    return Object.keys(this.kvMap) as T[];
+  }
+
+  public get values() {
+    return Object.values<VLObj>(this.kvMap).map(item => item.value);
+  }
+
+  public get labels() {
+    return Object.values<VLObj>(this.kvMap).map(item => item.label);
+  }
 }
 
-export const xEnum = <T extends string>(kvls: KVL<T>[]) => {
+export const xEnum = <T extends string>(kvls: KVL<T>) => {
   const e = new EnumTool(kvls);
   return {
     ...e.getMap(),
@@ -74,5 +91,8 @@ export const xEnum = <T extends string>(kvls: KVL<T>[]) => {
     labelByValue: e.labelByValue.bind(e),
     keyByValue: e.keyByValue.bind(e),
     genOptions: e.genOptions.bind(e),
+    keys: e.keys,
+    values: e.values,
+    labels: e.labels,
   };
 };
