@@ -51,7 +51,6 @@ export const STATUS_TEXT = {
 npm i @xliez/x-enum
 # or
 yarn add @xliez/x-enum
-
 # or
 pnpm add @xliez/x-enum
 ```
