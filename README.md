@@ -104,7 +104,7 @@ const labels = TypeEnum.labels;
 
 ## API
 
-### `xEnum(enumObj: Record<string, [number, string?]>)`
+### `xEnum(enumObj: Record<string, [number | string, string?]>)`
 
 一般情况：
 
@@ -126,7 +126,7 @@ const TypeEnum = xEnum({
 });
 ```
 
-### `xEnum(enumObj: Record<string, [number, string?]>))`返回值
+### `xEnum(enumObj: Record<string, [number | string, string?]>))`返回值
 
 | 方法名         | 参数                       | 返回值                                         | 说明                                                                                                                                                        |
 | -------------- | -------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
