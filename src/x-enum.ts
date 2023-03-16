@@ -6,8 +6,8 @@ type EnumValue = string | number;
  * @example { key: [0, '例子'] } 包含中文label
  * @example { key: [0] } 不包含中文label，用于key即是lābel的情况
  */
-type KVL<T extends string> = Record<T, [EnumValue, string?]>;
-type VLObj = { value: EnumValue; label?: string };
+type KVL<T extends string> = Record<T, EnumValue[]>;
+type VLObj = { value: EnumValue; label?: EnumValue };
 
 /**
  * 枚举工具类
