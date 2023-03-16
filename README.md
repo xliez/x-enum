@@ -45,6 +45,19 @@ export const STATUS_TEXT = {
 
 ## 使用方式
 
+### install
+
+```bash
+npm i @xliez/x-enum
+# or
+yarn add @xliez/x-enum
+
+# or
+pnpm add @xliez/x-enum
+```
+
+### example
+
 ```ts
 import { Select } from "antd";
 import { xEnum } from "@xliez/x-enum";
