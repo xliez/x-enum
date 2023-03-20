@@ -1,6 +1,9 @@
 {
   "name": "@xliez/x-enum",
   "description": "A simple enum management library build with TypeScript.",
+  "keywords": [
+    "enum"
+  ],
   "license": "MIT",
   "author": {
     "name": "xliez"
