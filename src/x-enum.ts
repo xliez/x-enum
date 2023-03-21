@@ -7,7 +7,7 @@ type EnumValue = string | number;
  * @example { key: [0] } 不包含中文label，用于key即是lābel的情况
  */
 type KVL<T extends string> = Record<T, EnumValue[]>;
-type VLObj = { value: EnumValue; label?: EnumValue };
+type VLObj = { value: EnumValue; label?: EnumValue; key: string };
 
 /**
  * 枚举工具类
@@ -22,7 +22,7 @@ export class EnumTool<T extends string> {
   constructor(kvl: KVL<T>) {
     Object.keys(kvl).forEach(key => {
       const [value, label] = kvl[key as T];
-      this.kvMap[key as T] = { value, label: label ?? key };
+      this.kvMap[key as T] = { value, label: label ?? key, key };
     });
   }
 
