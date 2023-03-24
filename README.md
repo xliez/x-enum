@@ -1,6 +1,10 @@
 # x-enum
 
-管理枚举值的工具
+管理枚举值的工具，支持快速获取 `key`、`value`、`label`，支持生成 `Select` 组件的 `options`。
+
+提供较好的 TS 类型支持。
+
+![sampel](./sample.gif)
 
 ## 动机
 
@@ -86,20 +90,27 @@ const label = TypeEnum.TODO.label; // 支持TS推断
 // or
 const label = TypeEnum.labelByKey("TODO");
 
-// 4. 根据 value 取 label
+// 4. 获取 key 字符串
+const key = TypeEnum.TODO.key; // 支持TS推断
+
+// 5. 根据 value 取 label
 const label = TypeEnum.labelByValue(0);
 
-// 5. 根据 value 取 key
+// 6. 根据 value 取 key
 const key = TypeEnum.keyByValue(0);
 
-// 6. 获取所有的 key
+// 7. 获取所有的 key
 const keys = TypeEnum.keys;
 
-// 7. 获取所有的 value
+// 8. 获取所有的 value
 const values = TypeEnum.values;
 
-// 8. 获取所有的 label
+// 9. 获取所有的 label
 const labels = TypeEnum.labels;
+
+// 10.获取 value 的联合类型，类似 TS 中的 enum 类型
+type T = TypeEnum._TYPE_; // => 0 | 1 | 2  防止和key冲突，加了下划线
+const a: T = 0;
 ```
 
 ## API
@@ -138,3 +149,4 @@ const TypeEnum = xEnum({
 | `keys`         | -                          | `string[]`                                     | 获取所有的 key                                                                                                                                              |
 | `values`       | -                          | `number[]`                                     | 获取所有的 value                                                                                                                                            |
 | `labels`       | -                          | `string[]`                                     | 获取所有的 label                                                                                                                                            |
+| `_TYPE_`       | -                          | `number \| string`                             | 获取 value 的联合类型，类似 TS 中的 enum 类型                                                                                                               |

@@ -6,7 +6,7 @@ type EnumValue = string | number;
  * @example { key: [0, '例子'] } 包含中文label
  * @example { key: [0] } 不包含中文label，用于key即是lābel的情况
  */
-type KVL<T extends string> = Record<T, [EnumValue, string?]>;
+type KVL<T extends string, V extends EnumValue> = Record<T, [V, string?]>;
 type VLObj = { value: EnumValue; label?: string; key: string };
 type OptionType = {
   label: string;
@@ -17,14 +17,16 @@ type OptionType = {
 /**
  * 枚举工具类
  */
-export class EnumTool<T extends string> {
+export class EnumTool<T extends string, V extends EnumValue> {
   private kvMap: { [key in T]: VLObj } = {} as any;
 
   private optionNames: [string, string] = ["label", "value"];
 
   private optionsCache: null | OptionType[] = null;
 
-  constructor(kvl: KVL<T>) {
+  public _TYPE_!: V;
+
+  constructor(kvl: KVL<T, V>) {
     Object.keys(kvl).forEach(key => {
       const [value, label] = kvl[key as T];
       this.kvMap[key as T] = { value, label: label ?? key, key };
@@ -89,7 +91,9 @@ export class EnumTool<T extends string> {
   }
 }
 
-export const xEnum = <T extends string>(kvls: KVL<T>) => {
+export const xEnum = <T extends string, V extends EnumValue>(
+  kvls: KVL<T, V>
+) => {
   const e = new EnumTool(kvls);
   return {
     ...e.getMap(),
@@ -101,5 +105,6 @@ export const xEnum = <T extends string>(kvls: KVL<T>) => {
     keys: e.keys,
     values: e.values,
     labels: e.labels,
+    _TYPE_: e._TYPE_,
   };
 };
