@@ -8,11 +8,6 @@ type EnumValue = string | number;
  */
 type KVL<T extends string, V extends EnumValue> = Record<T, [V, string?]>;
 type VLObj = { value: EnumValue; label?: string; key: string };
-type OptionType = {
-  label: string;
-  value: EnumValue;
-  [key: string]: string | number;
-};
 
 /**
  * 枚举工具类
@@ -22,7 +17,7 @@ export class EnumTool<T extends string, V extends EnumValue> {
 
   private optionNames: [string, string] = ["label", "value"];
 
-  private optionsCache: null | OptionType[] = null;
+  private optionsCache: any[] | null = null;
 
   public _TYPE_!: V;
 
