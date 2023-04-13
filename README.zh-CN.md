@@ -1,5 +1,14 @@
 # x-enum
 
+<div align="center">
+
+[![npm version](https://img.shields.io/npm/v/@xliez/x-enum)](https://www.npmjs.com/package/@xliez/x-enum)
+![npm download](https://img.shields.io/npm/dw/@xliez/x-enum)
+
+</div>
+
+[English Doc](./README.md)
+
 管理枚举值的工具，支持快速获取 `key`、`value`、`label`，支持生成 `Select` 组件的 `options`。
 
 提供较好的 TS 类型支持。

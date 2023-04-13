@@ -1,6 +1,13 @@
 # x-enum
 
-[中文](./README.zh-CN.md)
+<div align="center">
+
+[![npm version](https://img.shields.io/npm/v/@xliez/x-enum)](https://www.npmjs.com/package/@xliez/x-enum)
+![npm download](https://img.shields.io/npm/dw/@xliez/x-enum)
+
+</div>
+
+[中文文档](./README.zh-CN.md)
 
 A tool for managing enumeration values, supports quick access to `key`, `value`, `label`, and supports generating `options` of the `Select` component.
 
