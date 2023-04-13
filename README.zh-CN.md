@@ -4,6 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@xliez/x-enum)](https://www.npmjs.com/package/@xliez/x-enum)
 ![npm download](https://img.shields.io/npm/dw/@xliez/x-enum)
+![minzipped size](https://img.shields.io/bundlephobia/minzip/@xliez/x-enum)
 
 </div>
 
