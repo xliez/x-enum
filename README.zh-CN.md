@@ -124,8 +124,8 @@ const TypeEnum = xEnum({
 | `labels`       | -                          | `string[]`                                     | 获取所有的 label                                                                                                                                            |
 | `_TYPE_`       | -                          | `number \| string`                             | 获取 value 的联合类型，类似 TS 中的 enum 类型                                                                                                               |
 
-
 ## TL;DR
+
 ### 动机
 
 在业务中，我们经常需要维护一些枚举值，如状态、类型，这些枚举值包含 `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。

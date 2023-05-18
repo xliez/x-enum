@@ -20,7 +20,6 @@ A tool for managing enumeration values, supports quick access to `key`, `value`,
 - **Support quick access to `key`, `value`, `label`**
 - **Support TS inference**
 
-
 ## Usage
 
 ### install
@@ -125,7 +124,6 @@ const TypeEnum = xEnum({
 | `labels`       | -                          | `string[]`                                     | get all labels                                                                                                                                                                                                       |
 | `_TYPE_`       | -                          | `number \| string`                             | get the union type of value,                                                                                                                                                                                         |
 
-
 ## TL;DR
 
 ### motivation
@@ -168,6 +166,7 @@ Therefore, I have summarized the following common usage scenarios in B-side scen
 8. Get all labels
 
 This function tool encapsulates the methods of the above business scenarios to facilitate maintenance of enumeration values.
+
 ## License
 
 MIT
