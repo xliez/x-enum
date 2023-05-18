@@ -12,52 +12,16 @@
 
 A tool for managing enumeration values, supports quick access to `key`, `value`, `label`, and supports generating `options` of the `Select` component.
 
-Provide better TS type support.
-
 ![sampel](./sample.gif)
 
-## motivation
+## Feature
 
-In business, we often need to maintain some enumeration values, such as status and type, which include `key: unique key (generally in English)`, `value: value (corresponding to the data stored in the backend)`,` label: Chinese name (for display)`.
+- **Fast generation of `options` of `Select` component for antd**
+- **Support quick access to `key`, `value`, `label`**
+- **Support TS inference**
 
-Before, I would maintain these enumeration values like this:
 
-```ts
-export enum STATUS {
-  // key -> value
-  TODO = 1,
-  PENDING = 2,
-  Done = 3,
-}
-
-export const STATUS_TEXT = {
-  // key -> value -> label
-  [STATUS.TODO]: "todo",
-  [STATUS.PENDING]: "pending",
-  [STATUS.DONE]: "done",
-};
-```
-
-However, this maintenance method has the following problems:
-
-1. The key of `STATUS_TEXT` is converted to `string` instead of `number`, which needs to be converted
-2. The options of the Select component cannot be quickly generated
-3. It is cumbersome to select the label according to the value, which requires `STATUS_TEXT[STATUS.TODO]`
-
-Therefore, I have summarized the following common usage scenarios in B-side scenarios:
-
-1. The options of the select component: generally data like `{ label: string; value: string | number }[]`
-2. Get the value according to the key
-3. Get the label according to the key
-4. Get the label according to the value
-5. Get the key according to the value
-6. Get all keys
-7. Get all values
-8. Get all labels
-
-This function tool encapsulates the methods of the above business scenarios to facilitate maintenance of enumeration values, and **TS supports enumeration inference of key values**
-
-## How to use
+## Usage
 
 ### install
 
@@ -160,3 +124,50 @@ const TypeEnum = xEnum({
 | `values`       | -                          | `number[]`                                     | get all values                                                                                                                                                                                                       |
 | `labels`       | -                          | `string[]`                                     | get all labels                                                                                                                                                                                                       |
 | `_TYPE_`       | -                          | `number \| string`                             | get the union type of value,                                                                                                                                                                                         |
+
+
+## TL;DR
+
+### motivation
+
+In business, we often need to maintain some enumeration values, such as status and type, which include `key: unique key (generally in English)`, `value: value (corresponding to the data stored in the backend)`,` label: Chinese name (for display)`.
+
+Before, I would maintain these enumeration values like this:
+
+```ts
+export enum STATUS {
+  // key -> value
+  TODO = 1,
+  PENDING = 2,
+  Done = 3,
+}
+
+export const STATUS_TEXT = {
+  // key -> value -> label
+  [STATUS.TODO]: "todo",
+  [STATUS.PENDING]: "pending",
+  [STATUS.DONE]: "done",
+};
+```
+
+However, this maintenance method has the following problems:
+
+1. The key of `STATUS_TEXT` is converted to `string` instead of `number`, which needs to be converted
+2. The options of the Select component cannot be quickly generated
+3. It is cumbersome to select the label according to the value, which requires `STATUS_TEXT[STATUS.TODO]`
+
+Therefore, I have summarized the following common usage scenarios in B-side scenarios:
+
+1. The options of the select component: generally data like `{ label: string; value: string | number }[]`
+2. Get the value according to the key
+3. Get the label according to the key
+4. Get the label according to the value
+5. Get the key according to the value
+6. Get all keys
+7. Get all values
+8. Get all labels
+
+This function tool encapsulates the methods of the above business scenarios to facilitate maintenance of enumeration values.
+## License
+
+MIT

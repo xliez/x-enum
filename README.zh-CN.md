@@ -12,50 +12,13 @@
 
 管理枚举值的工具，支持快速获取 `key`、`value`、`label`，支持生成 `Select` 组件的 `options`。
 
-提供较好的 TS 类型支持。
-
 ![sampel](./sample.gif)
 
-## 动机
+## 特性
 
-在业务中，我们经常需要维护一些枚举值，如状态、类型，这些枚举值包含 `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。
-
-之前我会这样去维护这些枚举值：
-
-```ts
-export enum STATUS {
-  // key -> value
-  TODO = 1,
-  PENDING = 2,
-  DONE = 3,
-}
-
-export const STATUS_TEXT = {
-  // key -> value -> label
-  [STATUS.TODO]: "todo",
-  [STATUS.PENDING]: "pending",
-  [STATUS.DONE]: "done",
-};
-```
-
-但是这样的维护方式有以下几个问题：
-
-1. `STATUS_TEXT` 的 key 被转为 `string` 而非 `number`, 需要转换
-2. 无法快速生成 Select 组件的 options
-3. 根据 value 取 label 比较繁琐，需要 `STATUS_TEXT[STATUS.TODO]`
-
-因此我总结了 B 端场景下的以下这些常见使用场景：
-
-1. select 组件的 options: 一般为 `{ label: string; value: string | number }[]` 这样的数据
-2. 根据 key 获取 value
-3. 根据 key 获取 label
-4. 根据 value 获取 label
-5. 根据 value 获取 key
-6. 获取所有的 key
-7. 获取所有的 value
-8. 获取所有的 label
-
-该函数工具封装了以上业务场景的方法，方便维护枚举值，并且**TS 支持 key 值的枚举推断**
+- **快速生成 antd 的 `Select` 组件的 `options`**
+- **支持快速获取 `key`、`value`、`label`**
+- **支持 TS 推断**
 
 ## 使用方式
 
@@ -160,3 +123,50 @@ const TypeEnum = xEnum({
 | `values`       | -                          | `number[]`                                     | 获取所有的 value                                                                                                                                            |
 | `labels`       | -                          | `string[]`                                     | 获取所有的 label                                                                                                                                            |
 | `_TYPE_`       | -                          | `number \| string`                             | 获取 value 的联合类型，类似 TS 中的 enum 类型                                                                                                               |
+
+
+## TL;DR
+### 动机
+
+在业务中，我们经常需要维护一些枚举值，如状态、类型，这些枚举值包含 `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。
+
+之前我会这样去维护这些枚举值：
+
+```ts
+export enum STATUS {
+  // key -> value
+  TODO = 1,
+  PENDING = 2,
+  DONE = 3,
+}
+
+export const STATUS_TEXT = {
+  // key -> value -> label
+  [STATUS.TODO]: "todo",
+  [STATUS.PENDING]: "pending",
+  [STATUS.DONE]: "done",
+};
+```
+
+但是这样的维护方式有以下几个问题：
+
+1. `STATUS_TEXT` 的 key 被转为 `string` 而非 `number`, 需要转换
+2. 无法快速生成 Select 组件的 options
+3. 根据 value 取 label 比较繁琐，需要 `STATUS_TEXT[STATUS.TODO]`
+
+因此我总结了 B 端场景下的以下这些常见使用场景：
+
+1. select 组件的 options: 一般为 `{ label: string; value: string | number }[]` 这样的数据
+2. 根据 key 获取 value
+3. 根据 key 获取 label
+4. 根据 value 获取 label
+5. 根据 value 获取 key
+6. 获取所有的 key
+7. 获取所有的 value
+8. 获取所有的 label
+
+该函数工具封装了以上业务场景的方法，方便维护枚举值
+
+## License
+
+MIT
