@@ -128,44 +128,45 @@ const TypeEnum = xEnum({
 
 ### 动机
 
-在业务中，我们经常需要维护一些枚举值，如状态、类型，这些枚举值包含 `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。
+在业务中，我们经常需要维护一些枚举值，如状态、类型。
+
+一个枚举值包含3个具有关联关系的属性 `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。
 
 之前我会这样去维护这些枚举值：
 
-```ts
-export enum STATUS {
-  // key -> value
-  TODO = 1,
-  PENDING = 2,
-  DONE = 3,
-}
+    export enum STATUS {
+      // key -> value
+      TODO = 1,
+      PENDING = 2,
+      DONE = 3,
+    }
 
-export const STATUS_TEXT = {
-  // key -> value -> label
-  [STATUS.TODO]: "todo",
-  [STATUS.PENDING]: "pending",
-  [STATUS.DONE]: "done",
-};
-```
+    export const STATUS_TEXT = {
+      // key -> value -> label
+      [STATUS.TODO]: "todo",
+      [STATUS.PENDING]: "pending",
+      [STATUS.DONE]: "done",
+    };
 
-但是这样的维护方式有以下几个问题：
+但是这样的维护方式有以下几个不足：
 
-1. `STATUS_TEXT` 的 key 被转为 `string` 而非 `number`, 需要转换
-2. 无法快速生成 Select 组件的 options
-3. 根据 value 取 label 比较繁琐，需要 `STATUS_TEXT[STATUS.TODO]`
+1.  `STATUS_TEXT` 的 key 被转为 `string` 而非 `number`, 失去了原始类型
+2.  根据 value 取 label 比较繁琐，需要 `STATUS_TEXT[STATUS.TODO]`
+3.  代码太多且需要 2 个变量去维护
+4.  无法快速生成 Select 组件的 options
 
 因此我总结了 B 端场景下的以下这些常见使用场景：
 
-1. select 组件的 options: 一般为 `{ label: string; value: string | number }[]` 这样的数据
-2. 根据 key 获取 value
-3. 根据 key 获取 label
-4. 根据 value 获取 label
-5. 根据 value 获取 key
-6. 获取所有的 key
-7. 获取所有的 value
-8. 获取所有的 label
+1.  select 组件的 options: 一般为 `{ label: string; value: string | number }[]` 这样的数据，可以自定义修改 `lable` 和 `value` 的属性名
+2.  根据 key 获取 value
+3.  根据 key 获取 label
+4.  根据 value 获取 label
+5.  根据 value 获取 key
+6.  获取所有的 key
+7.  获取所有的 value
+8.  获取所有的 label
 
-该函数工具封装了以上业务场景的方法，方便维护枚举值
+该函数工具封装了以上业务场景的方法，方便维护枚举值，支持 TS 的类型提示。
 
 ## License
 
