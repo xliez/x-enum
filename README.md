@@ -8,19 +8,19 @@
 
 </div>
 
-[中文文档](./README.zh-CN.md)
+[English Doc](./README.EN.md)
 
-A tool for managing enumeration values, supports quick access to `key`, `value`, `label`, and supports generating `options` of the `Select` component.
+管理枚举值的工具，支持快速获取 `key`、`value`、`label`，支持生成 `Select` 组件的 `options`。
 
 ![sampel](./sample.gif)
 
-## Feature
+## 特性
 
-- **Fast generation of `options` of `Select` component for antd**
-- **Support quick access to `key`, `value`, `label`**
-- **Support TS inference**
+- **快速生成 antd 的 `Select` 组件的 `options`**
+- **支持快速获取 `key`、`value`、`label`**
+- **支持 TS 推断**
 
-## Usage
+## 使用方式
 
 ### install
 
@@ -39,12 +39,12 @@ import { Select } from "antd";
 import { xEnum } from "@xliez/x-enum";
 
 const TypeEnum = xEnum({
-  TODO: [0, "To Do"],
-  PENDING: [1, "Processing"],
-  DONE: [2, "Done"],
+  TODO: [0, "待办"],
+  PENDING: [1, "处理中"],
+  DONE: [2, "已完成"],
 });
 
-// 1. Generate select component options
+// 1. 生成 select 组件 options
 const App = () => {
   return (
     <>
@@ -53,36 +53,36 @@ const App = () => {
   );
 };
 
-// 2. Get the value according to the key
-const value = TypeEnum.TODO.value; // support TS inference
+// 2. 根据 key 取 value
+const value = TypeEnum.TODO.value; // 支持TS推断
 // or
 const value = TypeEnum.valueByKey("TODO");
 
-// 3. Get the label according to the key
-const label = TypeEnum.TODO.label; // support TS inference
+// 3. 根据 key 取 label
+const label = TypeEnum.TODO.label; // 支持TS推断
 // or
 const label = TypeEnum.labelByKey("TODO");
 
-// 4. Get the key string
-const key = TypeEnum.TODO.key; // support TS inference
+// 4. 获取 key 字符串
+const key = TypeEnum.TODO.key; // 支持TS推断
 
-// 5. Get the label according to the value
+// 5. 根据 value 取 label
 const label = TypeEnum.labelByValue(0);
 
-// 6. Get the key according to the value
+// 6. 根据 value 取 key
 const key = TypeEnum.keyByValue(0);
 
-// 7. Get all keys
+// 7. 获取所有的 key
 const keys = TypeEnum.keys;
 
-// 8. Get all values
+// 8. 获取所有的 value
 const values = TypeEnum.values;
 
-// 9. Get all labels
+// 9. 获取所有的 label
 const labels = TypeEnum.labels;
 
-// 10. Get the joint type of value, similar to the enum type in TS
-type T = TypeEnum._TYPE_; // => 0 | 1 | 2 To prevent conflict with key, add an underscore
+// 10.获取 value 的联合类型，类似 TS 中的 enum 类型
+type T = TypeEnum._TYPE_; // => 0 | 1 | 2  防止和key冲突，加了下划线
 const a: T = 0;
 ```
 
@@ -90,82 +90,83 @@ const a: T = 0;
 
 ### `xEnum(enumObj: Record<string, [number | string, string?]>)`
 
-generally:
+一般情况：
 
 ```ts
 const TypeEnum = xEnum({
-  TODO: [0, "To Do"],
-  PENDING: [1, "Processing"],
-  DONE: [2, "Done"],
+  TODO: [0, "待办"],
+  PENDING: [1, "处理中"],
+  DONE: [2, "已完成"],
 });
 ```
 
-If you use key as label:
+如果你使用 key 作为 label：
 
 ```ts
 const TypeEnum = xEnum({
-   to do: [0],
-   PENDING: [1, "Processing"],
-   DONE: [2, "Done"],
+  待办: [0],
+  PENDING: [1, "处理中"],
+  DONE: [2, "已完成"],
 });
 ```
 
-### return value of `xEnum(enumObj: Record<string, [number | string, string?]>))`
+### `xEnum(enumObj: Record<string, [number | string, string?]>))`返回值
 
-| Method name    | Parameters                 | Return value                                   | Description                                                                                                                                                                                                          |
-| -------------- | -------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `genOptions`   | `names?: [string, string]` | `{ label: string; value: string \| number }[]` | Generate select component options `names` parameter corresponds to the generated `label` `value` The name of `['label', 'value']` by default, if `[a, b]` is passed, the generated type is `{a: string, b: value}[]` |
-| `valueByKey`   | `key: string`              | `number`                                       | get value according to key                                                                                                                                                                                           |
-| `labelByKey`   | `key: string`              | `string`                                       | get label according to key                                                                                                                                                                                           |
-| `labelByValue` | `value: number`            | `string`                                       | get label according to value                                                                                                                                                                                         |
-| `keyByValue`   | `value: number`            | `string`                                       | get the key according to the value                                                                                                                                                                                   |
-| `keys`         | -                          | `string[]`                                     | get all keys                                                                                                                                                                                                         |
-| `values`       | -                          | `number[]`                                     | get all values                                                                                                                                                                                                       |
-| `labels`       | -                          | `string[]`                                     | get all labels                                                                                                                                                                                                       |
-| `_TYPE_`       | -                          | `number \| string`                             | get the union type of value,                                                                                                                                                                                         |
+| 方法名         | 参数                       | 返回值                                         | 说明                                                                                                                                                        |
+| -------------- | -------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `genOptions`   | `names?: [string, string]` | `{ label: string; value: string \| number }[]` | 生成 select 组件 options `names` 参数对应生成的`label` `value`的名称，默认为 `['label', 'value']`, 如果传`[a, b]`，则生成的是 `{a: string, b: value}[]`类型 |
+| `valueByKey`   | `key: string`              | `number`                                       | 根据 key 取 value                                                                                                                                           |
+| `labelByKey`   | `key: string`              | `string`                                       | 根据 key 取 label                                                                                                                                           |
+| `labelByValue` | `value: number`            | `string`                                       | 根据 value 取 label                                                                                                                                         |
+| `keyByValue`   | `value: number`            | `string`                                       | 根据 value 取 key                                                                                                                                           |
+| `keys`         | -                          | `string[]`                                     | 获取所有的 key                                                                                                                                              |
+| `values`       | -                          | `number[]`                                     | 获取所有的 value                                                                                                                                            |
+| `labels`       | -                          | `string[]`                                     | 获取所有的 label                                                                                                                                            |
+| `_TYPE_`       | -                          | `number \| string`                             | 获取 value 的联合类型，类似 TS 中的 enum 类型                                                                                                               |
 
 ## TL;DR
 
-### motivation
+### 动机
 
-In business, we often need to maintain some enumeration values, such as status and type, which include `key: unique key (generally in English)`, `value: value (corresponding to the data stored in the backend)`,` label: Chinese name (for display)`.
+在业务中，我们经常需要维护一些枚举值，如状态、类型。
 
-Before, I would maintain these enumeration values like this:
+一个枚举值包含 3 个具有关联关系的属性  `key: 唯一键(一般为英文)`、`value: 值(对应后端存储的数据)`、`label: 中文名(用于展示)`。
 
-```ts
-export enum STATUS {
-  // key -> value
-  TODO = 1,
-  PENDING = 2,
-  Done = 3,
-}
+之前我会这样去维护这些枚举值：
 
-export const STATUS_TEXT = {
-  // key -> value -> label
-  [STATUS.TODO]: "todo",
-  [STATUS.PENDING]: "pending",
-  [STATUS.DONE]: "done",
-};
-```
+    export enum STATUS {
+      // key -> value
+      TODO = 1,
+      PENDING = 2,
+      DONE = 3,
+    }
 
-However, this maintenance method has the following problems:
+    export const STATUS_TEXT = {
+      // key -> value -> label
+      [STATUS.TODO]: "todo",
+      [STATUS.PENDING]: "pending",
+      [STATUS.DONE]: "done",
+    };
 
-1. The key of `STATUS_TEXT` is converted to `string` instead of `number`, which needs to be converted
-2. The options of the Select component cannot be quickly generated
-3. It is cumbersome to select the label according to the value, which requires `STATUS_TEXT[STATUS.TODO]`
+但是这样的维护方式有以下几个不足：
 
-Therefore, I have summarized the following common usage scenarios in B-side scenarios:
+1.  `STATUS_TEXT`  的 key 被转为  `string`  而非  `number`, 失去了原始类型
+2.  根据 value 取 label 比较繁琐，需要  `STATUS_TEXT[STATUS.TODO]`
+3.  代码太多且需要 2 个变量去维护
+4.  无法快速生成 Select 组件的 options
 
-1. The options of the select component: generally data like `{ label: string; value: string | number }[]`
-2. Get the value according to the key
-3. Get the label according to the key
-4. Get the label according to the value
-5. Get the key according to the value
-6. Get all keys
-7. Get all values
-8. Get all labels
+因此我总结了 B 端场景下的以下这些常见使用场景：
 
-This function tool encapsulates the methods of the above business scenarios to facilitate maintenance of enumeration values.
+1.  select 组件的 options: 一般为  `{ label: string; value: string | number }[]`  这样的数据，可以自定义修改 `lable` 和 `value` 的属性名
+2.  根据 key 获取 value
+3.  根据 key 获取 label
+4.  根据 value 获取 label
+5.  根据 value 获取 key
+6.  获取所有的 key
+7.  获取所有的 value
+8.  获取所有的 label
+
+该函数工具封装了以上业务场景的方法，方便维护枚举值，支持 TS 的类型提示。
 
 ## License
 
