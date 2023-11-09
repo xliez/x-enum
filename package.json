@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/xliez/x-enum"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -21,14 +21,9 @@
   ],
   "exports": {
     ".": {
-      "require": {
-        "default": "./dist/index.js",
-        "types": "./dist/index.d.ts"
-      },
-      "import": {
-        "default": "./dist/index.mjs",
-        "types": "./dist/index.d.ts"
-      }
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
